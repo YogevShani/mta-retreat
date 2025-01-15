@@ -51,7 +51,7 @@
         }
     </style>
     <script>
-        function getOpenAIKey() {
+        function getOpenAIKey_() {
             var password = prompt("Please enter the password:");
             if (password !== null) {
                 fetch('https://7nbukne4nbzpost7hpde22de3i0dxjpj.lambda-url.us-east-1.on.aws/?password=' + encodeURIComponent(password))
@@ -66,6 +66,28 @@
                     });
             }
         }
+
+	function getOpenAIKey() {
+            var password = prompt("Please enter the password:");
+            if (password !== null) {
+                fetch('https://7nbukne4nbzpost7hpde22de3i0dxjpj.lambda-url.us-east-1.on.aws/?password=' + encodeURIComponent(password))
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('key-display').textContent = data.key;
+                        document.getElementById('key-display').style.display = 'block';
+                        navigator.clipboard.writeText(data.key).then(function() {
+                            alert('Key copied to clipboard!');
+                        }, function(err) {
+                            alert('Failed to copy key to clipboard.');
+                        });
+                    })
+                    .catch(error => {
+                        document.getElementById('key-display').textContent = 'Error fetching key';
+                        document.getElementById('key-display').style.display = 'block';
+                    });
+            }
+        }
+
     </script>
 </head>
 <body>
@@ -74,33 +96,95 @@
         <h1>MTA Retreat 2024 - Technical Training Session</h1>
     </header>
 
-    <section>
-        <h2>Prerequisite: Retrieve Open AI Key</h2>
-        <p>Call AWS Lambda function to get Open AI Key.</p>
-        <button onclick="getOpenAIKey()">Get KEY</button>
-        <div id="key-display"></div>
+    <section style="display: flex; align-items: center;">
+        <img src="open-ai-key.png" alt="Open AI Key" style="width:100px; height:auto; margin-right:20px;">
+        <div>
+            <h2>Prerequisite: Retrieve Open AI Key</h2>
+            <p>Call AWS Lambda function to get Open AI Key.</p>
+            <button onclick="getOpenAIKey()">Get KEY</button>
+            <div id="key-display"></div>
+        </div>
     </section>
 
-    <section>
-        <h2>Lab 1: <a href="https://colab.research.google.com/github/YogevShani/mta-retreat/blob/main/open_ai_chat.ipynb" target="_blank">open_ai_chat</a></h2>
-        <p>Basic Python Chat using Open AI Chat Completion API.</p>
+    <section style="display: flex; align-items: center;">
+        <img src="open-ai-api.png" alt="Open AI API" style="width:100px; height:auto; margin-right:20px;">
+        <div>
+            <h2>Lab 1: <a href="https://colab.research.google.com/github/YogevShani/mta-retreat/blob/main/open_ai_chat.ipynb" target="_blank">open_ai_chat</a></h2>
+            <p>Basic Python Chat using Open AI Chat Completion API.</p>
+        </div>
     </section>
 
-    <section>
-        <h2>Lab 2: <a href="https://colab.research.google.com/github/YogevShani/mta-retreat/blob/main/open_ai_pizza_chat_functions.ipynb" target="_blank">open_ai_pizza_chat_functions</a></h2>
-        <p>Python Pizza Chat using Function calling.</p>
+    <section style="display: flex; align-items: center;">
+        <img src="open-ai-api.png" alt="Open AI API" style="width:100px; height:auto; margin-right:20px;">
+        <div>
+            <h2>Lab 2: <a href="https://colab.research.google.com/github/YogevShani/mta-retreat/blob/main/open_ai_pizza_chat_functions.ipynb" target="_blank">open_ai_pizza_chat_functions</a></h2>
+            <p>Python Pizza Chat using Function calling.</p>
+        </div>
+    </section>Python Pizza Chat using Function calling.</p>
+
+    <section style="display: flex; align-items: center;">
+        <img src="aws-lambda.png" alt="AWS Lambda" style="width:100px; height:auto; margin-right:20px;">
+        <div>
+            <h2>Lab 3: <a href="https://colab.research.google.com/github/YogevShani/mta-retreat/blob/main/Lambda_Calling_Open_AI.ipynb" target="_blank">Lambda_Calling_Open_AI</a></h2>
+            <p>AWS Lambda API calling Open AI Chat Completion API.</p>
+        </div>
+    </section>AWS Lambda API calling Open AI Chat Completion API.</p>
+
+
+    <section style="display: flex; align-items: center;">
+        <img src="aws-lambda.png" alt="AWS Lambda" style="width:100px; height:auto; margin-right:20px;">
+        <div>
+            <h2>Lab 4: HTML Chat page using AWS Lambda API</h2>
+            <p>Creating an HTML Page that calls the Lambda API to create a Chat Page. This lab will open a text file with a prompt to be copied and used with ChatGPT.</p>
+            <a href="https://chatgpt.com/" target="_blank">Chat GPT</a> |
+            <a href="lab4.txt" target="_blank">View Prompts to create Chat HTML File calling AWS Lambda</a>
+        </div>
     </section>
 
-    <section>
-        <h2>Lab 3: <a href="https://colab.research.google.com/github/YogevShani/mta-retreat/blob/main/Lambda_Calling_Open_AI.ipynb" target="_blank">Lambda_Calling_Open_AI</a></h2>
-        <p>AWS Lambda API calling Open AI Chat Completion API.</p>
+
+    <section style="display: flex; align-items: center;">
+        <img src="aws-lambda.png" alt="AWS Lambda" style="width:100px; height:auto; margin-right:20px;">
+        <div>
+            <h2>Lab 5: <a href="https://colab.research.google.com/github/YogevShani/mta-retreat/blob/main/Lambda_Execution.ipynb" target="_blank">Lambda_Execution</a></h2>
+            <p>Execute a Lambda Function from Python.</p>
+        </div>
     </section>
 
-    <section>
-        <h2>Lab 4: HTML Chat page using AWS Lambda API</h2>
-        <p>Creating an HTML Page that calls the Lambda API to create a Chat Page. This lab will open a text file with a prompt to be copied and used with ChatGPT.</p>
-        <a href="https://chatgpt.com/" target="_blank">Chat GPT</a> | 
-        <a href="lab4.txt" target="_blank">View Prompts to create Chat HTML File calling AWS Lambda</a>
+    
+    <section style="display: flex; align-items: center;">
+        <img src="aws-amplify.png" alt="AWS Amplify" style="width:100px; height:auto; margin-right:20px;">
+        <div>
+            <h2>Lab 6: Host the web page</h2>
+            <p>Host chat.html in AWS Amplify.</p>
+        </div>
     </section>
+
+    
+    <section style="display: flex; align-items: center;">
+        <img src="amazon-cognito.jpg" alt="AWS Cognito" style="width:100px; height:auto; margin-right:20px;">
+        <div>
+            <h2>Lab 7: Create AWS Cognito Pool</h2>
+            <p>Create Application pool for user management.</p>
+        </div>
+    </section>
+
+
+    <section style="display: flex; align-items: center;">
+        <img src="amazon-cognito.jpg" alt="AWS Cognito" style="width:100px; height:auto; margin-right:20px;">
+        <div>
+            <h2>Lab 8: Add User Management to the web application</h2>
+            <p>Add Login to chat.html.</p>
+        </div>
+    </section>
+
+    
+    <section style="display: flex; align-items: center;">
+        <img src="amazon-cognito.jpg" alt="AWS Cognito" style="width:100px; height:auto; margin-right:20px;">
+        <div>
+            <h2>Lab 9: <a href="https://colab.research.google.com/github/YogevShani/mta-retreat/blob/main/TBD.ipynb" target="_blank">TBD</a></h2>
+            <p>Access User Management from Python.</p>
+        </div>
+    </section>
+
 </body>
 </html>
