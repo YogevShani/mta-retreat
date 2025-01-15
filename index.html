@@ -3,17 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Basic Site</title>
+    <title>MTA Retreat 2024</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        img {
+            width: 150px;
+        }
+        section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        p {
+            color: #555;
+        }
+        a, button {
+            color: #1a73e8;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        a:hover, button:hover {
+            text-decoration: underline;
+        }
+        #key-display {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            white-space: pre-wrap;
+            display: none;
+        }
+    </style>
+    <script>
+        function getOpenAIKey() {
+            var password = prompt("Please enter the password:");
+            if (password !== null) {
+                fetch('https://7nbukne4nbzpost7hpde22de3i0dxjpj.lambda-url.us-east-1.on.aws/?password=' + encodeURIComponent(password))
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('key-display').textContent = data.key;
+                        document.getElementById('key-display').style.display = 'block';
+                    })
+                    .catch(error => {
+                        document.getElementById('key-display').textContent = 'Error fetching key';
+                        document.getElementById('key-display').style.display = 'block';
+                    });
+            }
+        }
+    </script>
 </head>
 <body>
-    <h1>MTA Retreat 2024!</h1>
-    <p>Labs</p>
-    
-    <h2>Links:</h2>
-    <ul>
-        <li><a href="https://colab.research.google.com/github/YogevShani/mta-retreat/blob/main/open_ai_chat.ipynb" target="_blank">Open AI Chat</a></li>
-        <li><a href="https://www.github.com" target="_blank">GitHub</a></li>
-        <li><a href="page2.html">Go to Page 2</a></li>
-    </ul>
+    <header>
+        <img src="logo.png" alt="MTA Retreat 2024 Logo">
+        <h1>MTA Retreat 2024 - Technical Training Session</h1>
+    </header>
+
+    <section>
+        <h2>Prerequisite: Retrieve Open AI Key</h2>
+        <p>Call AWS Lambda function to get Open AI Key.</p>
+        <button onclick="getOpenAIKey()">Get KEY</button>
+        <div id="key-display"></div>
+    </section>
+
+    <section>
+        <h2>Lab 1: <a href="https://colab.research.google.com/github/YogevShani/mta-retreat/blob/main/open_ai_chat.ipynb" target="_blank">open_ai_chat</a></h2>
+        <p>Basic Python Chat using Open AI Chat Completion API.</p>
+    </section>
+
+    <section>
+        <h2>Lab 2: <a href="https://colab.research.google.com/github/YogevShani/mta-retreat/blob/main/open_ai_pizza_chat_functions.ipynb" target="_blank">open_ai_pizza_chat_functions</a></h2>
+        <p>Python Pizza Chat using Function calling.</p>
+    </section>
+
+    <section>
+        <h2>Lab 3: <a href="https://colab.research.google.com/github/YogevShani/mta-retreat/blob/main/Lambda_Calling_Open_AI.ipynb" target="_blank">Lambda_Calling_Open_AI</a></h2>
+        <p>AWS Lambda API calling Open AI Chat Completion API.</p>
+    </section>
+
+    <section>
+        <h2>Lab 4: HTML Chat page using AWS Lambda API</h2>
+        <p>Creating an HTML Page that calls the Lambda API to create a Chat Page. This lab will open a text file with a prompt to be copied and used with ChatGPT.</p>
+        <a href="https://chatgpt.com/" target="_blank">Chat GPT</a> | 
+        <a href="lab4.txt" target="_blank">View Prompts to create Chat HTML File calling AWS Lambda</a>
+    </section>
 </body>
 </html>
