@@ -1,6 +1,6 @@
 create a basic chat HTML.
 1. It will use a lambda function in the next URL:
-https://qjnohd6rxg5gi2d5wy52pzrpbi0lrirn.lambda-url.us-east-1.on.aws
+https://<LAMBDA-URL>.lambda-url.us-east-1.on.aws
 2. the lambda function will get the user prompt in a parameter called: user_prompt
 3. the Lambda function support GET request only
 4. The Lambda response will be in a parameter called: ai_reply
